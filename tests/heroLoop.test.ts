@@ -30,6 +30,10 @@ test("settle (reduced motion) shows the current pair answered and keeps the inde
   assert.deepEqual(heroReducer(initialHeroState(), { type: "settle" }, N), { index: 0, phase: "answer", pinned: false });
   const answered: HeroState = { index: 2, phase: "answer", pinned: true };
   assert.deepEqual(heroReducer(answered, { type: "settle" }, N), answered);
+  // Same object back when already answered, otherwise a reduced-motion effect would loop forever.
+  assert.strictEqual(heroReducer(answered, { type: "settle" }, N), answered);
+  const settled = heroReducer(initialHeroState(), { type: "settle" }, N);
+  assert.strictEqual(heroReducer(settled, { type: "settle" }, N), settled);
 });
 
 test("loop goes answer -> next question -> answer, and wraps after pair 6", () => {
