@@ -8,10 +8,15 @@ import { heroPairs } from "../content/heroPairs.ts";
 
 const html = renderToStaticMarkup(<Hero />);
 
-test("hero first render: pair 1 answered, eyebrow and card header from the data file", () => {
+test("hero first render opens on the question: searching card, no answer, no strike-through", () => {
   assert.match(html, /QUESTION 1 OF 6 · REFERRAL/);
   assert.match(html, /ALUMNI ADMIT CARD · MATCH FOR: REFERRAL/);
-  assert.match(html, /Ananya Rao/);
+  assert.match(html, /Matching your question to an alum…/);
+  assert.match(html, /data-searching/);
+  assert.ok(!html.includes("Ananya Rao"));
+  assert.ok(!html.includes(heroPairs[0]!.subhead));
+  assert.match(html, /decoration-transparent/);
+  assert.ok(!html.includes("decoration-stamp-red"));
   assert.match(html, /Illustrative example/);
 });
 
@@ -34,9 +39,10 @@ test("six pills, real buttons, 44px minimum, in order", () => {
 });
 
 test("live region announces only the solution", () => {
+  // First render is the question phase, so the region is empty: nothing is announced yet.
   const live = html.match(/<p aria-live="polite"[^>]*>([^<]*)<\/p>/);
   assert.ok(live);
-  assert.equal(live![1], heroPairs[0]!.subhead);
+  assert.equal(live![1], "");
   assert.equal((html.match(/aria-live/g) ?? []).length, 1);
 });
 
