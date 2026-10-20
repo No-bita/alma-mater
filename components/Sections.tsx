@@ -14,10 +14,10 @@ export function GapNote() {
   const g = copy.gap;
   return (
     <section aria-labelledby="gap-heading" className={wrap}>
-      <p id="gap-heading" className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-label md:text-sm">
-        {g.heading}
-      </p>
-      <p className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.1] text-ink md:text-5xl">{g.body}</p>
+      <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-label md:text-sm">{g.heading}</p>
+      <h2 id="gap-heading" className="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.1] text-ink md:text-5xl">
+        {g.body}
+      </h2>
       <p className="mt-4 max-w-2xl font-mono text-sm text-label md:text-base">{g.followUp}</p>
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-4 md:grid-cols-2">
         <div className="border-2 border-dashed border-ink bg-card p-5 font-mono text-sm text-label">{g.contrastLeft}</div>
