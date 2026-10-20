@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useReducer } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { copy } from "../content/copy.ts";
 import { heroPairs, type HeroPair } from "../content/heroPairs.ts";
 import { delayFor, heroReducer, initialHeroState, type HeroAction, type HeroState } from "../lib/heroLoop.ts";
@@ -12,14 +12,15 @@ import { Hand } from "./Hand.tsx";
 import { Stamp } from "./Stamp.tsx";
 import { cx } from "../lib/cx.ts";
 
-const fill = (template: string, pair: HeroPair, n: number) =>
-  template.replace("{n}", String(n)).replace("{USE CASE}", pair.useCase.toUpperCase());
-
-const reducer = (state: HeroState, action: HeroAction) => heroReducer(state, action, heroPairs.length);
+const fill = (template: string, pair: HeroPair) => template.replace("{USE CASE}", pair.useCase.toUpperCase());
 
 /** Hero (spec 5.2): pain headline, handwritten answer, pills, and the matched admit card. */
 export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
   const reduced = useReducedMotion() ?? false;
+  const reducer = useCallback(
+    (state: HeroState, action: HeroAction) => heroReducer(state, action, pairs.length),
+    [pairs.length],
+  );
   const [state, dispatch] = useReducer(reducer, undefined, initialHeroState);
 
   useEffect(() => {
@@ -31,7 +32,8 @@ export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
     return () => clearTimeout(id);
   }, [state, reduced]);
 
-  const pair = pairs[state.index]!;
+  const pair = pairs[state.index];
+  if (!pair) return null;
   const answered = state.phase === "answer";
   const t = reduced ? { duration: 0 } : { duration: 0.45, ease: "easeOut" as const };
 
@@ -40,7 +42,7 @@ export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
       <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-14 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12">
         <div className="min-w-0">
           <p className="font-mono text-xs font-semibold uppercase tracking-[0.08em] text-pen-blue md:text-sm">
-            {fill(copy.hero.eyebrowTemplate, pair, pair.id)}
+            {fill(copy.hero.eyebrowTemplate, pair)}
           </p>
 
           <motion.h1
@@ -119,7 +121,7 @@ export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
             <br />
             {copy.hero.stamp[1]}
           </Stamp>
-          <AdmitCard title={fill(copy.hero.cardHeaderTemplate, pair, pair.id)} className="min-h-[26rem]">
+          <AdmitCard title={fill(copy.hero.cardHeaderTemplate, pair)} className="min-h-[26rem]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`${pair.id}-${state.phase}`}
