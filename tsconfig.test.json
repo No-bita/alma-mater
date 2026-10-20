@@ -17,6 +17,7 @@
   },
   "include": [
     "lib/**/*.ts",
+    "content/**/*.ts",
     "components/**/*.tsx",
     "tests/**/*.ts",
     "tests/**/*.tsx"
