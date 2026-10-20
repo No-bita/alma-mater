@@ -29,7 +29,8 @@ export function delayFor(state: HeroState): number {
 export function heroReducer(state: HeroState, action: HeroAction, count: number): HeroState {
   if (count <= 0) return state;
   // Reduced motion: no loop, so jump straight to the readable answered state of the current pair.
-  if (action.type === "settle") return { ...state, phase: "answer" };
+  // Idempotent: return the same object when already answered, so React bails out and no re-render loop starts.
+  if (action.type === "settle") return state.phase === "answer" ? state : { ...state, phase: "answer" };
   if (action.type === "select") {
     const index = ((Math.trunc(action.index) % count) + count) % count;
     return { index, phase: "answer", pinned: true };
