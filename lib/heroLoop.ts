@@ -9,15 +9,15 @@ export type HeroState = {
   pinned: boolean;
 };
 
-export type HeroAction = { type: "tick" } | { type: "select"; index: number };
+export type HeroAction = { type: "tick" } | { type: "select"; index: number } | { type: "settle" };
 
 export const QUESTION_MS = 1700;
 export const ANSWER_MS = 3600;
 export const PINNED_ANSWER_MS = 5000;
 
-/** Start (and reduced-motion) state: first pair, shown as answered. */
+/** Start state: first pair, question phase (the loop then plays strike-through, answer, card). */
 export function initialHeroState(): HeroState {
-  return { index: 0, phase: "answer", pinned: false };
+  return { index: 0, phase: "question", pinned: false };
 }
 
 /** How long the current state stays up before the next tick. */
@@ -28,6 +28,8 @@ export function delayFor(state: HeroState): number {
 
 export function heroReducer(state: HeroState, action: HeroAction, count: number): HeroState {
   if (count <= 0) return state;
+  // Reduced motion: no loop, so jump straight to the readable answered state of the current pair.
+  if (action.type === "settle") return { ...state, phase: "answer" };
   if (action.type === "select") {
     const index = ((Math.trunc(action.index) % count) + count) % count;
     return { index, phase: "answer", pinned: true };
