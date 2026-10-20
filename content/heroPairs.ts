@@ -23,7 +23,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 1,
     useCase: "Referral",
-    pill: "Q1 · Referral",
+    pill: "Referral",
     headline: "No one to refer you at your dream company?",
     subhead: "Someone from your college works there. Alma Mater finds them.",
     alum: {
@@ -38,7 +38,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 2,
     useCase: "Interview prep",
-    pill: "Q2 · Interview prep",
+    pill: "Interview prep",
     headline: "Interview next week, no one to prep you?",
     subhead: "An alum cleared that exact interview. We’ll find them.",
     alum: {
@@ -52,7 +52,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 3,
     useCase: "First customer",
-    pill: "Q3 · First customer",
+    pill: "First customer",
     headline: "Your first customer is out there. Somewhere.",
     subhead: "One of them went to your college. We’ll tell you who.",
     alum: {
@@ -66,7 +66,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 4,
     useCase: "Co-founder",
-    pill: "Q4 · Co-founder",
+    pill: "Co-founder",
     headline: "Can’t find a co-founder you can trust?",
     subhead: "You shared a campus with them. We’ll find who.",
     alum: {
@@ -80,7 +80,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 5,
     useCase: "Supplier",
-    pill: "Q5 · Supplier",
+    pill: "Supplier",
     headline: "Paying a middleman’s margin?",
     subhead: "Your supplier could be an alum. We’ll find them.",
     alum: {
@@ -94,7 +94,7 @@ export const heroPairs: readonly HeroPair[] = [
   {
     id: 6,
     useCase: "Relocation",
-    pill: "Q6 · Relocation",
+    pill: "Relocation",
     headline: "Moving to a new city alone?",
     subhead: "Alumni already live there. We’ll find them.",
     alum: {
