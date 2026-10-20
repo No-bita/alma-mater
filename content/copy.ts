@@ -10,7 +10,7 @@ export const copy = {
   },
 
   hero: {
-    eyebrowTemplate: "QUESTION {n} OF 6 · {USE CASE}",
+    eyebrowTemplate: "{USE CASE}",
     primaryCta: "JOIN THE WAITLIST",
     secondaryCta: "I’m an alum. I want to help.",
     stamp: ["LIFE IS UNFAIR.", "USE YOUR UNFAIR ADVANTAGE."],

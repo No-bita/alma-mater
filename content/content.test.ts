@@ -10,7 +10,7 @@ test("six hero pairs with sequential ids and complete fields", () => {
   assert.equal(HERO_PAIR_COUNT, 6);
   heroPairs.forEach((p, i) => {
     assert.equal(p.id, i + 1);
-    assert.ok(p.pill.startsWith(`Q${p.id} · `));
+    assert.ok(!/\bQ\d\b/.test(p.pill), "pills show the topic only, no question number");
     for (const v of [p.useCase, p.headline, p.subhead, p.alum.name, p.alum.batchBranch, p.alum.currently, p.alum.whyThem]) {
       assert.ok(v.trim().length > 0);
     }
@@ -22,8 +22,8 @@ test("hero pair spec spot checks", () => {
   assert.equal(heroPairs[0].headline, "No one to refer you at your dream company?");
   assert.equal(heroPairs[3].alum.name, "Aditya Verma");
   assert.equal(heroPairs[5].alum.currently, "Data Scientist, Berlin");
-  assert.equal(heroPairs[0].pill, "Q1 · Referral");
-  assert.equal(heroPairs[5].pill, "Q6 · Relocation");
+  assert.equal(heroPairs[0].pill, "Referral");
+  assert.equal(heroPairs[5].pill, "Relocation");
 });
 
 test("hero pain headlines and alumni names are unique", () => {
