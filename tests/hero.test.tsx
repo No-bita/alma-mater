@@ -9,7 +9,8 @@ import { heroPairs } from "../content/heroPairs.ts";
 const html = renderToStaticMarkup(<Hero />);
 
 test("hero first render opens on the question: searching card, no answer, no strike-through", () => {
-  assert.match(html, /QUESTION 1 OF 6 · REFERRAL/);
+  assert.match(html, /<p[^>]*>REFERRAL<\/p>/);
+  assert.ok(!/QUESTION|\bOF 6\b/.test(html), "no slide count anywhere in the hero");
   assert.match(html, /ALUMNI ADMIT CARD · MATCH FOR: REFERRAL/);
   assert.match(html, /Matching your question to an alum…/);
   assert.match(html, /data-searching/);
@@ -34,6 +35,7 @@ test("six pills, real buttons, 44px minimum, in order", () => {
     assert.match(p, /min-h-11/);
     assert.ok(p.includes(heroPairs[i]!.pill));
   }
+  assert.ok(pills.every((p) => !/\bQ\d\b/.test(p)), "pills show the topic only");
   assert.match(pills[0]!, /aria-pressed="true"/);
   assert.match(pills[1]!, /aria-pressed="false"/);
 });
@@ -69,4 +71,10 @@ test("grid columns can shrink, so the pill row scrolls inside itself instead of 
   assert.match(html, /grid-cols-\[minmax\(0,1fr\)\]/);
   assert.ok((html.match(/min-w-0/g) ?? []).length >= 2);
   assert.match(html, /overflow-x-auto/);
+});
+
+test("hero renders nothing for an empty pair list, and loops over a custom list length", () => {
+  assert.equal(renderToStaticMarkup(<Hero pairs={[]} />), "");
+  const two = renderToStaticMarkup(<Hero pairs={heroPairs.slice(0, 2)} />);
+  assert.equal((two.match(/aria-pressed/g) ?? []).length, 2);
 });
