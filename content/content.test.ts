@@ -51,7 +51,7 @@ test("key copy matches spec", () => {
   assert.deepEqual(copy.hero.stamp, ["LIFE IS UNFAIR.", "USE YOUR UNFAIR ADVANTAGE."]);
   assert.equal(copy.waitlist.submit, "ISSUE MY ADMIT CARD.");
   assert.equal(copy.waitlist.anchorId, "waitlist");
-  assert.equal(copy.forAlumni.anchorId, "alumni");
+  assert.equal(copy.forAlumni.anchorId, "for-alumni");
   assert.equal(copy.examCentres.items.length, 3);
   assert.equal(copy.howItWorks.steps.length, 3);
 });
