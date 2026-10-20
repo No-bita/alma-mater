@@ -1,11 +1,8 @@
 // Run: node --experimental-strip-types --test content/content.test.ts
 import { test } from "node:test";
 import assert from "node:assert/strict";
-// @ts-expect-error TS5097: Node needs the .ts extension; tsconfig does not allow it
 import { heroPairs, HERO_PAIR_COUNT } from "./heroPairs.ts";
-// @ts-expect-error TS5097: Node needs the .ts extension; tsconfig does not allow it
 import { taskWall } from "./taskWall.ts";
-// @ts-expect-error TS5097: Node needs the .ts extension; tsconfig does not allow it
 import { copy } from "./copy.ts";
 
 test("six hero pairs with sequential ids and complete fields", () => {
