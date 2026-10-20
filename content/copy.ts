@@ -56,7 +56,7 @@ export const copy = {
   },
 
   forAlumni: {
-    anchorId: "alumni",
+    anchorId: "for-alumni",
     heading: "BE SOMEONE’S ANSWER KEY.",
     body: "Somewhere on campus, someone is stuck on a question you’ve already answered. Alma Mater sends them to you, only for the things you choose to help with.",
     sampleTags: ["Happy to refer", "Open to mentoring", "Open to business"],
