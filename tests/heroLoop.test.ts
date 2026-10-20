@@ -22,8 +22,14 @@ test("timings match the spec: 1.7s question, 3.6s answer, 5s after a pill click"
   assert.equal(delayFor({ index: 0, phase: "answer", pinned: true }), 5000);
 });
 
-test("start state is the first pair, answered (also the reduced-motion state)", () => {
-  assert.deepEqual(initialHeroState(), { index: 0, phase: "answer", pinned: false });
+test("start state is the first pair in the question phase", () => {
+  assert.deepEqual(initialHeroState(), { index: 0, phase: "question", pinned: false });
+});
+
+test("settle (reduced motion) shows the current pair answered and keeps the index", () => {
+  assert.deepEqual(heroReducer(initialHeroState(), { type: "settle" }, N), { index: 0, phase: "answer", pinned: false });
+  const answered: HeroState = { index: 2, phase: "answer", pinned: true };
+  assert.deepEqual(heroReducer(answered, { type: "settle" }, N), answered);
 });
 
 test("loop goes answer -> next question -> answer, and wraps after pair 6", () => {
@@ -57,4 +63,5 @@ test("select clamps out-of-range indexes and empty data is a no-op", () => {
   assert.equal(heroReducer(initialHeroState(), { type: "select", index: 7 }, N).index, 1);
   assert.equal(heroReducer(initialHeroState(), { type: "select", index: -1 }, N).index, 5);
   assert.deepEqual(heroReducer(initialHeroState(), { type: "tick" }, 0), initialHeroState());
+  assert.deepEqual(heroReducer(initialHeroState(), { type: "settle" }, 0), initialHeroState());
 });
