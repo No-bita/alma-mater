@@ -23,7 +23,10 @@ export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
   const [state, dispatch] = useReducer(reducer, undefined, initialHeroState);
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced) {
+      dispatch({ type: "settle" });
+      return;
+    }
     const id = setTimeout(() => dispatch({ type: "tick" }), delayFor(state));
     return () => clearTimeout(id);
   }, [state, reduced]);
