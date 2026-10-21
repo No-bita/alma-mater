@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useReducer } from "react";
-import { copy } from "../content/copy.ts";
+import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { heroPairs, type HeroPair } from "../content/heroPairs.ts";
 import { delayFor, heroReducer, initialHeroState, type HeroAction, type HeroState } from "../lib/heroLoop.ts";
 import { AdmitCard, CardDivider, CardField, PhotoBox } from "./AdmitCard.tsx";
@@ -80,7 +80,7 @@ export function Hero({ pairs = heroPairs }: { pairs?: readonly HeroPair[] }) {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Button href="#waitlist">{copy.hero.primaryCta}</Button>
+            <Button href={PLATFORM_URL}>{copy.hero.primaryCta}</Button>
             <a
               href="#for-alumni"
               className="inline-flex min-h-11 items-center font-mono text-sm text-pen-blue underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pen-blue"
@@ -183,7 +183,7 @@ function MatchedAlum({ pair }: { pair: HeroPair }) {
           <CheckboxTag key={tag} label={tag} />
         ))}
       </div>
-      <Button href="#waitlist" variant="secondary" className="mt-4 w-full">
+      <Button href={PLATFORM_URL} variant="secondary" className="mt-4 w-full">
         {f.reachOut}
       </Button>
     </div>
