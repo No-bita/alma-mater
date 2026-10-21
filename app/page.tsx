@@ -8,7 +8,6 @@ import {
   GapNote,
   HowItWorks,
   TaskWall,
-  WaitlistPlaceholder,
 } from "../components/Sections.tsx";
 
 export default function Home() {
@@ -23,7 +22,6 @@ export default function Home() {
         <ForAlumni />
         <BuildTogether />
         <ExamCentres />
-        <WaitlistPlaceholder />
       </main>
       <Footer />
     </>
