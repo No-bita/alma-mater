@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Hero } from "../components/Hero.tsx";
 import { Nav } from "../components/Nav.tsx";
-import { copy } from "../content/copy.ts";
+import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { heroPairs } from "../content/heroPairs.ts";
 
 const html = renderToStaticMarkup(<Hero />);
@@ -23,7 +23,8 @@ test("hero first render opens on the question: searching card, no answer, no str
 
 test("hero has a headline, both CTAs and the two-line stamp", () => {
   assert.match(html, /<h1[^>]*>No one to refer you at your dream company\?<\/h1>/);
-  assert.match(html, /JOIN THE WAITLIST/);
+  assert.match(html, /OPEN ALMA MATER/);
+  assert.ok(html.includes(`href="${PLATFORM_URL}"`), "primary CTA opens the platform");
   assert.match(html, /I’m an alum\. I want to help\./);
   assert.match(html, /LIFE IS UNFAIR\.<br\/>USE YOUR UNFAIR ADVANTAGE\./);
 });
@@ -62,7 +63,7 @@ test("hero copy comes from content files, nav matches spec", () => {
   assert.ok(nav.includes(copy.nav.wordmark));
   assert.ok(nav.includes(copy.nav.badge));
   assert.ok(nav.includes(copy.nav.joinButton));
-  assert.match(nav, /href="#waitlist"/);
+  assert.ok(nav.includes(`href="${PLATFORM_URL}"`), "nav button opens the platform");
   assert.match(nav, /href="#for-alumni"/);
   assert.match(nav, /border-b-2 border-ink/);
 });
