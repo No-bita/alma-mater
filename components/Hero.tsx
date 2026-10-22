@@ -156,7 +156,9 @@ function Searching() {
   );
 }
 
-function MatchedAlum({ pair }: { pair: HeroPair }) {
+/* Exported for tests: the answer-state card only renders after the client-side
+   match loop, so server snapshots of <Hero /> never reach it. */
+export function MatchedAlum({ pair }: { pair: HeroPair }) {
   const f = copy.hero.cardFields;
   const { alum } = pair;
   return (
