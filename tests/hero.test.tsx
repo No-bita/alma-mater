@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Hero } from "../components/Hero.tsx";
+import { Hero, MatchedAlum } from "../components/Hero.tsx";
 import { Nav } from "../components/Nav.tsx";
 import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { heroPairs } from "../content/heroPairs.ts";
@@ -66,6 +66,13 @@ test("hero copy comes from content files, nav matches spec", () => {
   assert.ok(nav.includes(`href="${PLATFORM_URL}"`), "nav button opens the platform");
   assert.match(nav, /href="#for-alumni"/);
   assert.match(nav, /border-b-2 border-ink/);
+});
+
+test("matched-alum answer state: REACH OUT CTA opens the platform", () => {
+  const answer = renderToStaticMarkup(<MatchedAlum pair={heroPairs[0]!} />);
+  assert.ok(answer.includes(`href="${PLATFORM_URL}"`), "answer-state REACH OUT CTA opens the platform");
+  assert.ok(answer.includes(copy.hero.cardFields.reachOut));
+  assert.ok(answer.includes(heroPairs[0]!.alum.name));
 });
 
 test("grid columns can shrink, so the pill row scrolls inside itself instead of widening the page", () => {
