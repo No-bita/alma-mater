@@ -2,7 +2,7 @@
 // Items marked [PLACEHOLDER] stay visible on purpose until real values exist.
 
 // Live platform entry point. Every landing CTA opens the main platform's login page.
-export const PLATFORM_URL = "https://alumni-drtry.vercel.app/login";
+export const PLATFORM_URL = "https://app.almamater.aaryanshah.co.in/login";
 
 export const copy = {
   nav: {
