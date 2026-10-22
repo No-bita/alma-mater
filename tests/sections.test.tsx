@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { BuildTogether, ExamCentres, Footer, ForAlumni, GapNote, HowItWorks, TaskWall, WaitlistPlaceholder } from "../components/Sections.tsx";
-import { copy } from "../content/copy.ts";
+import { BuildTogether, ExamCentres, Footer, ForAlumni, GapNote, HowItWorks, TaskWall } from "../components/Sections.tsx";
+import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { taskWall } from "../content/taskWall.ts";
 
 const page = renderToStaticMarkup(
@@ -13,7 +13,6 @@ const page = renderToStaticMarkup(
     <ForAlumni />
     <BuildTogether />
     <ExamCentres />
-    <WaitlistPlaceholder />
     <Footer />
   </>,
 );
@@ -33,8 +32,9 @@ test("task wall renders all 12 questions in 3 sections", () => {
 test("how it works has 3 steps, for alumni is the #for-alumni target", () => {
   for (const s of copy.howItWorks.steps) assert.ok(page.includes(s.title));
   assert.match(page, /<section id="for-alumni"/);
-  assert.match(page, /<section id="waitlist"/);
+  assert.ok(!page.includes('id="waitlist"'), "waitlist placeholder section is gone");
   assert.ok(page.includes(copy.forAlumni.cta));
+  assert.ok(page.includes(`href="${PLATFORM_URL}"`), "for-alumni CTA opens the platform");
 });
 
 test("build together, centres and footer copy; placeholders stay visible", () => {
@@ -42,7 +42,6 @@ test("build together, centres and footer copy; placeholders stay visible", () =>
   for (const c of copy.examCentres.items) assert.ok(page.includes(c));
   assert.ok(page.includes(copy.footer.tagline));
   assert.ok(page.includes(copy.footer.contactEmail));
-  assert.ok(page.includes("[PLACEHOLDER: waitlist form"));
 });
 
 test("no slide or question counts in the page text", () => {

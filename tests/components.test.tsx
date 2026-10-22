@@ -28,9 +28,9 @@ test("stamp rotation is clamped to -8..-4 degrees", () => {
 test("button renders a real <button> by default and a real <a> with href", () => {
   const b = renderToStaticMarkup(<Button>Join</Button>);
   assert.match(b, /^<button type="button"/);
-  const a = renderToStaticMarkup(<Button href="#waitlist">Join</Button>);
+  const a = renderToStaticMarkup(<Button href="#for-alumni">Join</Button>);
   assert.match(a, /^<a /);
-  assert.match(a, /href="#waitlist"/);
+  assert.match(a, /href="#for-alumni"/);
 });
 
 test("buttons have square corners and a 44px minimum touch target", () => {

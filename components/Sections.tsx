@@ -1,4 +1,4 @@
-import { copy } from "../content/copy.ts";
+import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { taskWall, taskWallCopy } from "../content/taskWall.ts";
 import { AdmitCard } from "./AdmitCard.tsx";
 import { Button } from "./Button.tsx";
@@ -98,7 +98,7 @@ export function ForAlumni() {
             {a.heading}
           </h2>
           <p className="mt-4 max-w-xl font-mono text-sm text-label md:text-base">{a.body}</p>
-          <Button href="#waitlist" className="mt-6">
+          <Button href={PLATFORM_URL} className="mt-6">
             {a.cta}
           </Button>
         </div>
@@ -152,21 +152,6 @@ export function ExamCentres() {
   );
 }
 
-/** Visible placeholder until phase 4 builds the form. */
-export function WaitlistPlaceholder() {
-  const w = copy.waitlist;
-  return (
-    <section id={w.anchorId} aria-labelledby="waitlist-heading" className={`${wrap} scroll-mt-4`}>
-      <h2 id="waitlist-heading" className={h2}>
-        {w.heading}
-      </h2>
-      <p className="mt-2 font-mono text-sm text-label md:text-base">{w.subheading}</p>
-      <p className="mt-6 border-2 border-dashed border-ink p-4 font-mono text-sm text-label">
-        [PLACEHOLDER: waitlist form, built in phase 4]
-      </p>
-    </section>
-  );
-}
 
 /** Footer (spec 5.10). */
 export function Footer() {

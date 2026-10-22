@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { copy } from "../content/copy.ts";
+import { copy, PLATFORM_URL } from "../content/copy.ts";
 import { Button, buttonClasses } from "./Button.tsx";
 
 /** Top bar (spec 5.1). On small screens: wordmark plus the join button only. */
@@ -22,7 +22,7 @@ export function Nav() {
               {forAlumniLink}
             </a>
           </span>
-          <Button href="#waitlist" className="px-3 text-xs sm:px-4 sm:text-sm">
+          <Button href={PLATFORM_URL} className="px-3 text-xs sm:px-4 sm:text-sm">
             {joinButton}
           </Button>
         </div>

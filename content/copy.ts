@@ -1,17 +1,20 @@
 // Static page copy, taken verbatim from the landing page spec (sections 5.1 to 5.10, 7).
 // Items marked [PLACEHOLDER] stay visible on purpose until real values exist.
 
+// Live platform entry point. Every landing CTA opens the main platform's login page.
+export const PLATFORM_URL = "https://app.almamater.aaryanshah.co.in/login";
+
 export const copy = {
   nav: {
     wordmark: "ALMA MATER",
     badge: "CENTRE: IIT (BHU) · NOW LIVE",
     forAlumniLink: "For alumni",
-    joinButton: "Join the waitlist",
+    joinButton: "Open Alma Mater",
   },
 
   hero: {
     eyebrowTemplate: "{USE CASE}",
-    primaryCta: "JOIN THE WAITLIST",
+    primaryCta: "OPEN ALMA MATER",
     secondaryCta: "I’m an alum. I want to help.",
     stamp: ["LIFE IS UNFAIR.", "USE YOUR UNFAIR ADVANTAGE."],
     cardHeaderTemplate: "ALUMNI ADMIT CARD · MATCH FOR: {USE CASE}",
@@ -72,25 +75,6 @@ export const copy = {
 
   examCentres: {
     items: ["IIT (BHU) — LIVE", "OTHER IITs — NEXT", "IIMs — AFTER THAT"],
-  },
-
-  waitlist: {
-    anchorId: "waitlist",
-    heading: "CLAIM YOUR ADMIT CARD.",
-    subheading: "Be first in when we open.",
-    emailLabel: "Email",
-    roleLabel: "I am a:",
-    roles: ["Student", "Recent graduate", "Alum"],
-    collegeLabel: "College",
-    collegeDefault: "IIT (BHU)",
-    collegeOther: "Other",
-    firstNeedLabel: "What would you ask an alum for first?",
-    submit: "ISSUE MY ADMIT CARD.",
-    success: {
-      stamp: "REGISTERED",
-      message: "You’re on the list. We’ll email you when Alma Mater opens.",
-    },
-    duplicate: "You’re already on the list",
   },
 
   footer: {

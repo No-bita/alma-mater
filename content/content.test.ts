@@ -3,7 +3,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { heroPairs, HERO_PAIR_COUNT } from "./heroPairs.ts";
 import { taskWall } from "./taskWall.ts";
-import { copy } from "./copy.ts";
+import { copy, PLATFORM_URL } from "./copy.ts";
 
 test("six hero pairs with sequential ids and complete fields", () => {
   assert.equal(heroPairs.length, HERO_PAIR_COUNT);
@@ -49,8 +49,9 @@ test("placeholders stay visible", () => {
 test("key copy matches spec", () => {
   assert.equal(copy.nav.badge, "CENTRE: IIT (BHU) · NOW LIVE");
   assert.deepEqual(copy.hero.stamp, ["LIFE IS UNFAIR.", "USE YOUR UNFAIR ADVANTAGE."]);
-  assert.equal(copy.waitlist.submit, "ISSUE MY ADMIT CARD.");
-  assert.equal(copy.waitlist.anchorId, "waitlist");
+  assert.equal(copy.nav.joinButton, "Open Alma Mater");
+  assert.equal(copy.hero.primaryCta, "OPEN ALMA MATER");
+  assert.equal(PLATFORM_URL, "https://app.almamater.aaryanshah.co.in/login");
   assert.equal(copy.forAlumni.anchorId, "for-alumni");
   assert.equal(copy.examCentres.items.length, 3);
   assert.equal(copy.howItWorks.steps.length, 3);
