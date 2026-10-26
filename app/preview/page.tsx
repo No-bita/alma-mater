@@ -51,7 +51,7 @@ export default function PreviewPage() {
 
       <Section title="Buttons">
         <div className="flex flex-wrap items-center gap-4">
-          <Button variant="primary">Join the waitlist</Button>
+          <Button variant="primary">Join as an alum</Button>
           <Button variant="secondary">Reach out</Button>
           <Button variant="link" href="#alumni">
             I am an alum. I want to help.

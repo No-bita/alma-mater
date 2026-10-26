@@ -1,5 +1,5 @@
 // Static page copy, taken verbatim from the landing page spec (sections 5.1 to 5.10, 7).
-// Items marked [PLACEHOLDER] stay visible on purpose until real values exist.
+// The OG image and favicon are file-based metadata: app/opengraph-image.png and app/icon.svg.
 
 // Live platform entry point. Every landing CTA opens the main platform's login page.
 export const PLATFORM_URL = "https://app.almamater.aaryanshah.co.in/login";
@@ -63,7 +63,7 @@ export const copy = {
     heading: "BE SOMEONE’S ANSWER KEY.",
     body: "Somewhere on campus, someone is stuck on a question you’ve already answered. Alma Mater sends them to you, only for the things you choose to help with.",
     sampleTags: ["Happy to refer", "Open to mentoring", "Open to business"],
-    cta: "Join the waitlist as an alum",
+    cta: "Join as an alum",
   },
 
   buildTogether: {
@@ -80,14 +80,12 @@ export const copy = {
   footer: {
     wordmark: "ALMA MATER",
     tagline: "Made for alumni, by an alum.",
-    contactEmail: "[PLACEHOLDER: contact email]",
+    contactEmail: "aaryan@aaryanshah.co.in",
   },
 
   seo: {
     title: "Alma Mater — Find the alum who can help",
     description:
       "Tell us what you need. We’ll find the alum who’s already done it. Now live for IIT (BHU).",
-    ogImage: "[PLACEHOLDER: OG image]",
-    favicon: "[PLACEHOLDER]",
   },
 } as const;
