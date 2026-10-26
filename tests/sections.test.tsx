@@ -37,11 +37,12 @@ test("how it works has 3 steps, for alumni is the #for-alumni target", () => {
   assert.ok(page.includes(`href="${PLATFORM_URL}"`), "for-alumni CTA opens the platform");
 });
 
-test("build together, centres and footer copy; placeholders stay visible", () => {
+test("build together, centres and footer copy; contact email is a mailto link", () => {
   for (const c of copy.buildTogether.cards) assert.ok(page.includes(c));
   for (const c of copy.examCentres.items) assert.ok(page.includes(c));
   assert.ok(page.includes(copy.footer.tagline));
-  assert.ok(page.includes(copy.footer.contactEmail));
+  assert.ok(page.includes(`href="mailto:${copy.footer.contactEmail}"`));
+  assert.ok(!page.includes("PLACEHOLDER"));
 });
 
 test("no slide or question counts in the page text", () => {
