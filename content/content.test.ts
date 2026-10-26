@@ -40,10 +40,11 @@ test("task wall has 3 sections and 12 numbered questions", () => {
   taskWall.forEach((s) => assert.equal(s.questions.length, 4));
 });
 
-test("placeholders stay visible", () => {
-  assert.equal(copy.footer.contactEmail, "[PLACEHOLDER: contact email]");
-  assert.equal(copy.seo.ogImage, "[PLACEHOLDER: OG image]");
-  assert.equal(copy.seo.favicon, "[PLACEHOLDER]");
+test("no placeholders left in the copy", () => {
+  assert.equal(copy.footer.contactEmail, "aaryan@aaryanshah.co.in");
+  assert.ok(!JSON.stringify(copy).includes("PLACEHOLDER"));
+  assert.equal(copy.forAlumni.cta, "Join as an alum");
+  assert.equal(copy.seo.title, "Alma Mater — Find the alum who can help");
 });
 
 test("key copy matches spec", () => {
